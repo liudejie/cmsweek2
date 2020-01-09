@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bw.mapper.EmpMapper">
+
+	<select id="select" resultType="Gs">
+		select * from gstable
+		<where>
+			<if test="id!=''">
+				id like "%${id}%"
+			</if>
+			<if test="keywords!=null and keywords!=''">
+				and keywords like "%${keywords}%"
+			</if>
+			<if test="description!=null and description!=''">
+				and description like "%${description}%"
+			</if>
+			<if test="name!=null and name!=''">
+				and name like "%${name}%"
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="Gs">
+		insert into
+		gstable(id,keywords,description,name,cp,dz,zb,cltime,njtime,zt,bz)
+		values(0,#{keywords},#{description},#{name},#{cp},#{dz},#{zb},#{cltime},#{njtime},#{zt},#{bz});
+	</insert>
+
+</mapper>
